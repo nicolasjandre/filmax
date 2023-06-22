@@ -13,5 +13,6 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         marginTop: 431,
         marginLeft: 24,
-    }
+    },
+    
 })

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet,TextInput } from 'react-native';
+import { View, StyleSheet,TextInput, Image} from 'react-native';
 import { styles } from "./styles";
 
 // import { Container } from './styles';
@@ -9,6 +9,7 @@ export const input = () => {
         <TextInput style={styles.input}
         placeholderTextColor={'#f6f9fd'}
         />
+          <Image source={require('../src/assets/input/email.png')} />
   </View>;
   
 };
