@@ -7,7 +7,7 @@ import { styles } from "./styles";
 export const input = () => {
   return <View style={styles.container}>
         <TextInput style={styles.input}
-        placeholderTextColor={'#070707'}
+        placeholderTextColor={'#f6f9fd'}
         secureTextEntry
         />
   </View>;

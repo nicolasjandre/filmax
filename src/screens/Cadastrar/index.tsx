@@ -1,8 +1,13 @@
 import { NavigationProp } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Image, KeyboardAvoidingView, Text, TextInput, View, TouchableOpacity} from "react-native";
+import { Image, Text, View } from "react-native";
+import Input from "../../components/input";
 import { StackParamList } from "../../routes";
 import { styles } from "./styles";
+
+
+
 
 interface CadastrarProps {
   navigation: NavigationProp<StackParamList, "Cadastrar">;
@@ -18,8 +23,12 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
       <Text onPress={() => navigation.navigate("BottomTab", { screen: "Home" })} style={styles.text}>
         Ir para screen Home
       </Text>
-      <View>
-        <Image source={require('../src/assets/logo/filMAX.png')} />
+      <View style={styles.container}>
+        <StatusBar backgroundColor="#050505" translucent={false} />
+        <Image
+        source={require("../../assets/images/logo/FilMAX.png")} />
+        <Input/>
+        <Input/>
       </View>
     </View>
   );
