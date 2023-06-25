@@ -23,5 +23,5 @@ const api = axios.create({
 });
 
 export function getTop250Movies(): Promise<AxiosResponse<PopularMovies, any>> {
-  return api.get(`/API/Top250Movies/${API_KEY}`);
+  return api.get(`/API/MostPopularMovies/${API_KEY}`);
 }

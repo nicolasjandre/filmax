@@ -5,19 +5,19 @@ import { Entypo } from "@expo/vector-icons";
 import { GlassBox } from "../GlassBox";
 
 interface GlassBoxProps extends ViewProps {
-  movieName: string;
+  rate: string;
 }
 
-export const GlassBoxImdbRate = ({ movieName }: GlassBoxProps) => {
+export const GlassBoxImdbRate = ({ rate }: GlassBoxProps) => {
   return (
     <View style={styles.glassContainer}>
-      <GlassBox personalizedStyles={{flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
+      <GlassBox personalizedStyles={{ flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}>
         <Text style={styles.imdbName}>IMDb</Text>
-        <View style={{flexDirection: "row"}}>
+        <View style={{ flexDirection: "row" }}>
           <Entypo name="star" size={40} color="#fff220" />
           <View style={styles.textsContainer}>
             <Text numberOfLines={2} ellipsizeMode="tail" style={styles.imdbRate}>
-              {movieName}
+              {rate}
             </Text>
           </View>
         </View>

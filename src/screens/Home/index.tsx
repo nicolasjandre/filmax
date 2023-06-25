@@ -29,7 +29,7 @@ export const Home = ({ navigation }: HomeProps) => {
       <Text style={styles.text}>HOME HEADER</Text>
 
       <CardDestaque navigation={navigation} movie={popularMovies[0]} />
-      <PopularesCarroussel navigation={navigation} data={popularMovies.slice(13, 18)} />
+      <PopularesCarroussel navigation={navigation} data={popularMovies.slice(1, 6)} />
     </View>
   );
 };

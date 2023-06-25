@@ -29,6 +29,7 @@ export const Entrar = ({ navigation }: CadastrarProps) => {
   };
 
   const handleEntrar = () => {
+    navigation.navigate("BottomTab", { screen: "Home" });
     const emailValido = validarEmail(email);
     const senhaValida = validarSenha(senha);
 

@@ -25,7 +25,7 @@ export const CardPopulares: React.FC<Props> = (props) => {
           <GlassBoxFilmTitle movieName={movie?.title} />
         </View>
         <View style={styles.glassBoxImdbRateContainer}>
-          <GlassBoxImdbRate movieName={movie?.imDbRating} />
+          <GlassBoxImdbRate rate={movie?.imDbRating} />
         </View>
       </Animated.View>
     </TouchableWithoutFeedback>
