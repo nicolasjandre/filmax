@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Image, Text, View } from "react-native";
 import Input from "../../components/input";
-import { StackParamList } from "../../routes";
+import { StackParamList } from "../../routes/StackNavigator";
 import { styles } from "./styles";
 
 
@@ -23,13 +23,7 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
       <Text onPress={() => navigation.navigate("BottomTab", { screen: "Home" })} style={styles.text}>
         Ir para screen Home
       </Text>
-      <View style={styles.container}>
-        <StatusBar backgroundColor="#050505" translucent={false} />
-        <Image
-        source={require("../../assets/images/logo/FilMAX.png")} />
-        <Input/>
-        <Input/>
-      </View>
+
     </View>
   );
 };

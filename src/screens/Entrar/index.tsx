@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { styles } from "./styles";
 import { NavigationProp } from "@react-navigation/native";
-import { StackParamList } from "../../routes";
+import { StackParamList } from "../../routes/StackNavigator";
 
 interface EntrarProps {
   navigation: NavigationProp<StackParamList, "Entrar">;
