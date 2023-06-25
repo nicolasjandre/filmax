@@ -1,16 +1,21 @@
 import { NavigationProp } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { StackParamList } from "../../routes";
+import { View } from "react-native";
 import { styles } from "./styles";
-
+import { StackParamList } from "../../routes/StackNavigator";
+import { Button } from "../../components/Button";
+import { EntrarCadastrarFraseFinal } from "../../components/EntrarCadastrarFraseFinal";
+import { Input } from "../../components/Input";
+import { Logo } from "../../components/Logo";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
+import { PageTitle } from "../../components/PageTitle";
 
 interface CadastrarProps {
   navigation: NavigationProp<StackParamList, "Cadastrar">;
 }
 
-export const Cadastrar = ({ navigation }: CadastrarProps) => {
+export const Entrar = ({ navigation }: CadastrarProps) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -20,11 +25,10 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
   };
 
   const validarSenha = (senha: string) => {
-    const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return senhaRegex.test(senha);
+    return senha.length > 6;
   };
 
-  const handleCadastrar = () => {
+  const handleEntrar = () => {
     const emailValido = validarEmail(email);
     const senhaValida = validarSenha(senha);
 
@@ -52,41 +56,43 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
           // Lidar com erros durante o cadastro
           console.error("Erro ao realizar o cadastro:", error);
         });
+    } else if (!emailValido) {
+      console.log("Por favor digite um e-mail válido.");
     } else {
-      console.log("Email ou senha inválidos. Por favor, verifique os campos.");
+      console.log("A senha precisa ter ao menos 6 caracteres.");
     }
   };
 
+  function handleNavigateCadastrar() {
+    navigation.navigate("Cadastrar");
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Entrar Screen</Text>
-      <Text onPress={() => navigation.navigate("Entrar")} style={styles.text}>
-        Ir para a tela Entrar
-      </Text>
-      <Text onPress={() => navigation.navigate("BottomTab", { screen: "Home" })} style={styles.text}>
-        Ir para a tela Home
-      </Text>
+      <Logo />
 
-      <StatusBar backgroundColor="#0f0f0f" translucent={false} />
-      <Image source={require("../../assets/images/logo/FilMAX.png")} />
+      <PageTitle title="Entrar" />
 
-      <View style={styles.conta}>
-        <Text style={styles.conta}>Entrar </Text>
-      </View>
+      <Input
+        icon={<MaterialIcons name="email" size={26} color="#ffffff" />}
+        placeholder="Email"
+        onChangeText={(text) => setEmail(text)}
+      />
 
-      <TextInput placeholder="Email" style={styles.input} onChangeText={(text) => setEmail(text)} />
-      <TextInput placeholder="Senha" style={styles.input} onChangeText={(text) => setSenha(text)} secureTextEntry />
+      <Input
+        icon={<Entypo name="lock" size={26} color="#ffffff" />}
+        placeholder="Senha"
+        onChangeText={(text) => setSenha(text)}
+        secureTextEntry
+      />
 
-      <TouchableOpacity style={styles.loginButton} onPress={handleCadastrar}>
-        <Text style={styles.loginText}>Cadastrar</Text>
-      </TouchableOpacity>
+      <Button title="Entrar" onPress={handleEntrar} />
 
-      <View style={styles.signUpContainer}>
-        <Text style={styles.signUpText}>Não Possui Conta?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Entrar")}>
-          <Text style={styles.signUpButtom}>Cadastrar</Text>
-        </TouchableOpacity>
-      </View>
+      <EntrarCadastrarFraseFinal
+        onPress={handleNavigateCadastrar}
+        fraseInicial="Não possui uma conta?"
+        textoBotao="Cadastrar"
+      />
     </View>
   );
 };
