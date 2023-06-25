@@ -9,10 +9,11 @@ interface ButtonProps extends TouchableOpacityProps {
 export const Button = ({title, ...rest } : ButtonProps) => {
 	return <TouchableOpacity
 		{...rest}
-		style={styles.button}
+		style={styles.loginButton}
 	>
-		<Text style={styles.buttonText}>
+		<Text style={styles.loginText}>
 			{title}
 		</Text>
 	</TouchableOpacity>
 };
+
