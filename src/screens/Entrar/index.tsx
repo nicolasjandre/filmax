@@ -5,6 +5,7 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { StackParamList } from "../../routes";
 import { styles } from "./styles";
 
+
 interface CadastrarProps {
   navigation: NavigationProp<StackParamList, "Cadastrar">;
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { styles } from "./styles";
-import { StackParamList } from "../../routes";
 import { NavigationProp } from "@react-navigation/native";
+import { StackParamList } from "../../routes/StackNavigator";
 
 interface ComecarProps {
   navigation: NavigationProp<StackParamList, "Comecar">;

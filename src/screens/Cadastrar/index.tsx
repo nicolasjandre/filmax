@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { StackParamList } from "../../routes";
+
 import { styles } from "./styles";
 
 interface CadastrarProps {
@@ -86,6 +87,7 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
           <Text style={styles.signUpButtom}>Entrar</Text>
         </TouchableOpacity>
       </View>
+
     </View>
   );
 };
