@@ -3,7 +3,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { StackParamList } from "../../routes";
+import { StackParamList } from "../../routes/StackNavigator";
 import { styles } from "./styles";
 
 type DetalhesScreenRouteProp = RouteProp<StackParamList, "Detalhes">;

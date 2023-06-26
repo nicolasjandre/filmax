@@ -1,8 +1,8 @@
 import { Text, View, ImageBackground } from "react-native";
 import { styles } from "./styles";
-import { StackParamList } from "../../routes";
 import { NavigationProp } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { StackParamList } from "../../routes/StackNavigator";
 
 interface ComecarProps {
   navigation: NavigationProp<StackParamList, "Comecar">;

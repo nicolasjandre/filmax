@@ -1,14 +1,14 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#15141F",
-    padding: 16,
-    paddingTop: 30,
-    paddingBottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  text: {
-    color: "#ffffff",
+  conta: {
+    color: "#FFFFFF",
+    fontSize: 20,
   },
 });
