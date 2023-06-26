@@ -19,7 +19,7 @@ export function PopularesCarroussel({ data, navigation }: PopularesCarrousselPro
   const baseOptions = {
     vertical: false,
     width: PAGE_WIDTH * 0.9,
-    height: PAGE_WIDTH * 1.2,
+    height: PAGE_WIDTH * 1.09,
   } as const;
 
   function handleNavigate(movieId: string) {
