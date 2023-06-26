@@ -11,4 +11,17 @@ export const styles = StyleSheet.create({
   text: {
     color: "#ffffff",
   },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    marginHorizontal: 8,
+    backgroundColor: "#211F30",
+    width: 360,
+    height: 48,
+  },
+  input: {
+    marginLeft: 25,
+  },
 });
