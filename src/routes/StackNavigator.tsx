@@ -5,14 +5,12 @@ import Detalhes from "../screens/Detalhes";
 import { Entrar } from "../screens/Entrar";
 import { BottomTabNavigator } from "./BottomTabNavigator";
 import { Splash } from "../screens/Splash";
-import { Perfil } from "../screens/Perfil";
 
 export type StackParamList = {
   Comecar: undefined;
   Cadastrar: undefined;
   Entrar: undefined;
   Splash: undefined;
-  Perfil: undefined;
   BottomTab: { screen: "Home" | "Descobrir" | "Perfil" };
   Detalhes: { id: string };
 };
@@ -28,7 +26,6 @@ export function StackNavigator() {
       <Stack.Screen name="Detalhes" component={Detalhes} />
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="BottomTab" component={BottomTabNavigator} />
-      <Stack.Screen name="Perfil" component={Perfil} />
     </Stack.Navigator>
   );
 }

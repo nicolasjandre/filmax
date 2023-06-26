@@ -19,7 +19,7 @@ export const Comecar = ({ navigation }: ComecarProps) => {
         <Text style={styles.text2}>O aplicativo de streaming favorito</Text>
         <Text style={styles.text3}>do século!</Text>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Perfil")}> 
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Cadastrar")}> 
         <Text style={styles.textButton}>Começar</Text>
         </TouchableOpacity>
       </ImageBackground>

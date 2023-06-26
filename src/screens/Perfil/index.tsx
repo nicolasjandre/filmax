@@ -1,29 +1,47 @@
-import { Text, View } from "react-native"
+import { View, Text,ImageBackground, Image, TouchableOpacity} from "react-native"
 import { styles } from './styles'
-import { NavigationProp } from "@react-navigation/native";
-import { StackParamList } from "../../routes";
 import React from "react";
-import { TextInput } from "react-native-gesture-handler";
-interface ComecarProps {
-    navigation: NavigationProp<StackParamList, "Perfil">;
-  }
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 
-export const Perfil = ({ navigation }: ComecarProps) => {
+const Imagem = require('../../assets/images/perfil/icon2.png')
+
+export const Perfil = () => {
 
     const [nome, setNome] = React.useState('');
-    const [sobreNome, setSobreNome] = React.useState('');
+    const [sobrenome, setSobrenome] = React.useState('');
     const [telefone, setTelefone] = React.useState('');
 
+    const atualizarPerfil = () => {
+        console.log('Perfil cadastrado:', {
+          nome,
+          sobrenome,
+          telefone
+        });
+    };
+
     return (
-        <View style={styles.container}>
+        <View style={styles.container}> 
             <Text style={styles.text}>Meu Perfil</Text>
-            <TextInput
-                style={styles.input}
-                onChangeText={setNome}
-                value={nome}
+            <ImageBackground source={Imagem} resizeMode="cover" style={styles.imagePerfil}/>
+            <Input
                 placeholder="Nome"
-                keyboardType="email-address"
+                onChangeText={(text) => setNome(text)}
             />
+
+            <Input
+                placeholder="Sobrenome"
+                onChangeText={(text) => setSobrenome(text)}
+            />
+
+            <Input
+                placeholder="Telefone"
+                onChangeText={(text) => setTelefone(text)}
+            />
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.textButton}>Salvar Perfil</Text>
+            </TouchableOpacity>
+        
         </View>
     )
 }
