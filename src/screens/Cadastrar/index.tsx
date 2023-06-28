@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
+import React, { useState } from "react";
 import { View } from "react-native";
-
-import { styles } from "./styles";
-import { StackParamList } from "../../routes/StackNavigator";
 import { Button } from "../../components/Button";
 import { EntrarCadastrarFraseFinal } from "../../components/EntrarCadastrarFraseFinal";
 import { Input } from "../../components/Input";
 import { Logo } from "../../components/Logo";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
 import { PageTitle } from "../../components/PageTitle";
+import { StackParamList } from "../../routes/StackNavigator";
+import { cadastrar } from "../../services/authApi";
+import { styles } from "./styles";
 
 interface CadastrarProps {
   navigation: NavigationProp<StackParamList, "Cadastrar">;
@@ -26,37 +25,19 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
   };
 
   const validarSenha = (senha: string) => {
-    return senha.length > 6;
+    return senha.length >= 6;
   };
 
-  const handleCadastrar = () => {
+  const handleCadastrar = async () => {
     const emailValido = validarEmail(email);
     const senhaValida = validarSenha(senha);
 
     if (emailValido && senhaValida) {
-      const dadosCadastro = {
-        email: email,
-        senha: senha,
-      };
-
-      // Chamar uma API para realizar o cadastro
-      fetch("https://exemplo.com/api/cadastro", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dadosCadastro),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Processar a resposta da API
-          console.log("Cadastro realizado com sucesso!");
-          console.log(data);
-        })
-        .catch((error) => {
-          // Lidar com erros durante o cadastro
-          console.error("Erro ao realizar o cadastro:", error);
-        });
+      try {
+        const response = await cadastrar(email, senha);
+      } catch (error:any) {
+        console.log(error?.message)
+      }
     } else if (!emailValido) {
       console.log("Por favor digite um e-mail válido.");
     } else {
