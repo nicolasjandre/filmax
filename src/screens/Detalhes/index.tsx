@@ -3,18 +3,15 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { StackParamList } from "../../routes/StackNavigator";
-import { getMovieById } from "../../services/api";
+import { StackParamList } from "../../routes/AuthStackNavigator";
+import { getMovieById } from "../../services/imdbApi";
 import { styles } from "./styles";
 
 import backButtom from "../../assets/images/icons-details-page/backpageicon.png";
 import playButtonImage from "../../assets/images/icons-details-page/playicon.png";
 
 type DetalhesScreenRouteProp = RouteProp<StackParamList, "Detalhes">;
-type DetalhesScreenNavigationProp = StackNavigationProp<
-  StackParamList,
-  "Detalhes"
->;
+type DetalhesScreenNavigationProp = StackNavigationProp<StackParamList, "Detalhes">;
 
 interface DetalhesProps {
   route: DetalhesScreenRouteProp;
@@ -197,10 +194,7 @@ export default function Detalhes({ route, navigation }: DetalhesProps) {
                   }}
                 >
                   <View>
-                    <Image
-                      source={{ uri: item.image }}
-                      style={styles.similarImage}
-                    />
+                    <Image source={{ uri: item.image }} style={styles.similarImage} />
                     <Text style={styles.similarTitle}>{item.title}</Text>
                   </View>
                 </TouchableOpacity>

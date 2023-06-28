@@ -2,7 +2,7 @@ import { NavigationProp } from "@react-navigation/native";
 import React from "react";
 import { Image } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { StackParamList } from "../../routes/StackNavigator";
+import { StackParamList } from "../../routes/AuthStackNavigator";
 import { Movie } from "../../services/imdbApi";
 import { GlassBoxDestaque } from "../GlassBoxDestaque";
 import { styles } from "./styles";

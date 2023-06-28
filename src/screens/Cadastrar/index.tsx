@@ -1,15 +1,18 @@
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View } from "react-native";
 import { Button } from "../../components/Button";
 import { EntrarCadastrarFraseFinal } from "../../components/EntrarCadastrarFraseFinal";
 import { Input } from "../../components/Input";
 import { Logo } from "../../components/Logo";
 import { PageTitle } from "../../components/PageTitle";
-import { StackParamList } from "../../routes/StackNavigator";
 import { cadastrar } from "../../services/authApi";
 import { styles } from "./styles";
+import { AuthContext } from "../../contexts/AuthContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import ToastManager, { Toast } from "toastify-react-native";
+import { StackParamList } from "../../routes";
 
 interface CadastrarProps {
   navigation: NavigationProp<StackParamList, "Cadastrar">;
@@ -18,6 +21,7 @@ interface CadastrarProps {
 export const Cadastrar = ({ navigation }: CadastrarProps) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const { setAuthenticatedUser } = useContext(AuthContext);
 
   const validarEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,13 +39,20 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
     if (emailValido && senhaValida) {
       try {
         const response = await cadastrar(email, senha);
-      } catch (error:any) {
-        console.log(error?.message)
+        const token = response?.data?.accessToken;
+
+        setAuthenticatedUser(response?.data?.user);
+
+        await AsyncStorage.setItem("filmax@token", token);
+
+        navigation.navigate("BottomTab", { screen: "Home" });
+      } catch (error: any) {
+        Toast.error(error?.message);
       }
     } else if (!emailValido) {
-      console.log("Por favor digite um e-mail válido.");
+      Toast.error("Por favor digite um e-mail válido.");
     } else {
-      console.log("A senha precisa ter ao menos 6 caracteres.");
+      Toast.error("A senha precisa ter ao menos 6 caracteres.");
     }
   };
 
@@ -51,6 +62,7 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
 
   return (
     <View style={styles.container}>
+      <ToastManager />
       <Logo />
 
       <PageTitle title="Crie Sua Conta" />
