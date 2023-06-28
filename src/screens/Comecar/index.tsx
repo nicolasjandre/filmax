@@ -2,10 +2,10 @@ import React from "react";
 import { Text, View } from "react-native";
 import { styles } from "./styles";
 import { NavigationProp } from "@react-navigation/native";
-import { StackParamList } from "../../routes/AuthStackNavigator";
+import { StackNoAuthParamList } from "../../routes/NoAuthStackNavigator";
 
 interface ComecarProps {
-  navigation: NavigationProp<StackParamList, "Comecar">;
+  navigation: NavigationProp<StackNoAuthParamList, "Comecar">;
 }
 
 export const Comecar = ({ navigation }: ComecarProps) => {

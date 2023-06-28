@@ -4,20 +4,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
 import { CardDestaque } from "../../components/CardDestaque";
 import { PopularesCarroussel } from "../../components/PopularesCarroussel";
-import { StackParamList } from "../../routes/AuthStackNavigator";
 import { Movie, getTop250Movies } from "../../services/imdbApi";
 import { styles } from "./styles";
 import { Header } from "../../components/Header";
 import { AuthContext } from "../../contexts/AuthContext";
 import ToastManager, { Toast } from "toastify-react-native";
+import { StackAuthParamList } from "../../routes/AuthStackNavigator";
 
 interface HomeProps {
-  navigation: NavigationProp<StackParamList, "BottomTab">;
+  navigation: NavigationProp<StackAuthParamList, "BottomTab">;
 }
 
 export const Home = ({ navigation }: HomeProps) => {
   const [popularMovies, setPopularMovies] = useState<Movie[] | []>([]);
-  const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
+  const { authenticatedUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchPopularMovies = async () => {

@@ -3,13 +3,13 @@ import Detalhes from "../screens/Detalhes";
 import { BottomTabNavigator } from "./BottomTabNavigator";
 import { Splash } from "../screens/Splash";
 
-type StackParamList = {
+export type StackAuthParamList = {
   Splash: undefined;
   BottomTab: { screen: "Home" | "Descobrir" | "Perfil" };
   Detalhes: { id: string };
 };
 
-const Stack = createStackNavigator<StackParamList>();
+const Stack = createStackNavigator<StackAuthParamList>();
 
 export function AuthStackNavigator() {
   return (
