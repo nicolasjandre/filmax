@@ -1,11 +1,11 @@
 import { NavigationProp } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import { StackParamList } from "../../routes/StackNavigator";
-import { styles } from "./styles";
-import { Movie, getTop250Movies } from "../../services/api";
 import { CardDestaque } from "../../components/CardDestaque";
 import { PopularesCarroussel } from "../../components/PopularesCarroussel";
+import { StackParamList } from "../../routes/StackNavigator";
+import { Movie, getTop250Movies } from "../../services/imdbApi";
+import { styles } from "./styles";
 
 interface HomeProps {
   navigation: NavigationProp<StackParamList, "BottomTab">;

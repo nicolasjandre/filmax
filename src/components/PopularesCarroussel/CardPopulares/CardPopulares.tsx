@@ -1,12 +1,12 @@
 import React from "react";
-import { View, type ViewProps, TouchableWithoutFeedback } from "react-native";
+import { TouchableWithoutFeedback, View, type ViewProps } from "react-native";
 import type { AnimateProps } from "react-native-reanimated";
 import Animated from "react-native-reanimated";
 
-import { CardPopularesImage } from "../CardPopularesImage/CardPopularesImage";
-import { Movie } from "../../../services/api";
+import { Movie } from "../../../services/imdbApi";
 import { GlassBoxFilmTitle } from "../../GlassBoxFilmTitle";
 import { GlassBoxImdbRate } from "../../GlassBoxImdbRate";
+import { CardPopularesImage } from "../CardPopularesImage/CardPopularesImage";
 import { styles } from "./styles";
 
 interface Props extends AnimateProps<ViewProps> {
