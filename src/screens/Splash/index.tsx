@@ -1,9 +1,10 @@
 import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
 import { hideAsync } from "expo-splash-screen";
-import { StackParamList } from "../../routes/StackNavigator";
+import { StackParamList } from "../../routes";
 import { NavigationProp } from "@react-navigation/native";
+import { AuthContext } from "../../contexts/AuthContext";
 
 interface SplashProps {
   navigation: NavigationProp<StackParamList, "Splash">;
@@ -11,6 +12,7 @@ interface SplashProps {
 
 export const Splash = ({ navigation }: SplashProps) => {
   const [lastStatus, setLastStatus] = useState<AVPlaybackStatus>({} as AVPlaybackStatus);
+  const { authenticatedUser } = useContext(AuthContext);
 
   function onPlaybackStatusUpdate(status: AVPlaybackStatus) {
     if (status.isLoaded) {
@@ -19,7 +21,11 @@ export const Splash = ({ navigation }: SplashProps) => {
       }
 
       if (status.didJustFinish) {
-        navigation.navigate("Comecar");
+        if (authenticatedUser?.email) {
+          navigation.navigate("BottomTab", { screen: "Home" });
+        } else {
+          navigation.navigate("Comecar");
+        }
       }
     }
 

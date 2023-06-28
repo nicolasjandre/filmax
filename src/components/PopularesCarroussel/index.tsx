@@ -4,7 +4,7 @@ import Carousel from "react-native-reanimated-carousel";
 
 import { NavigationProp } from "@react-navigation/native";
 import { window } from "../../constants/index";
-import { StackParamList } from "../../routes/StackNavigator";
+import { StackParamList } from "../../routes/AuthStackNavigator";
 import { Movie } from "../../services/imdbApi";
 import { CardPopulares } from "./CardPopulares/CardPopulares";
 
