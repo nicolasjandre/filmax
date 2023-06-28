@@ -2,10 +2,10 @@ import { Text, View, ImageBackground } from "react-native";
 import { styles } from "./styles";
 import { NavigationProp } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { StackParamList } from "../../routes/StackNavigator";
+import { StackNoAuthParamList } from "../../routes/NoAuthStackNavigator";
 
 interface ComecarProps {
-  navigation: NavigationProp<StackParamList, "Comecar">;
+  navigation: NavigationProp<StackNoAuthParamList, "Comecar">;
 }
 
 const Imagem = require('../../assets/images/começar/img.jpeg');

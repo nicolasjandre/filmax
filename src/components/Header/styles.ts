@@ -2,13 +2,15 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: "#15141F",
-        paddingHorizontal: 16,
+        padding: 16,
         paddingBottom: 0,
-        alignItems: "center",
+        width: "100%",
     },
-    text: {
-        color: "#ffffff",
+    img: {
+        marginTop: 20,
+        marginBottom: 30,
+        width: 120,
+        height: 25,
     },
 });
