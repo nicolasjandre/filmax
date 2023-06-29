@@ -23,7 +23,7 @@ type InformacoesPerfil = {
 };
 
 const api = axios.create({
-  baseURL: "https://6ea9-168-205-103-5.ngrok-free.app",
+  baseURL: "https://legal-feet-hang.loca.lt",
 });
 
 export function login(email: string, senha: string): Promise<AxiosResponse<LoginCadastroResponse, any>> {

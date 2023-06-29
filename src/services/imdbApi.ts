@@ -132,7 +132,7 @@ export type MovieSearch = {
   results: MovieSearchResult[];
 };
 
-const API_KEY = "k_vw4r7z6k";
+const API_KEY = "k_c7wnhiri";
 
 const api = axios.create({
   baseURL: "https://imdb-api.com/",
