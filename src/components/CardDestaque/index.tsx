@@ -1,11 +1,11 @@
+import { NavigationProp } from "@react-navigation/native";
 import React from "react";
-import { View, Image } from "react-native";
+import { Image } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { StackParamList } from "../../routes/AuthStackNavigator";
+import { Movie } from "../../services/imdbApi";
 import { GlassBoxDestaque } from "../GlassBoxDestaque";
 import { styles } from "./styles";
-import { Movie } from "../../services/api";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { NavigationProp } from "@react-navigation/native";
-import { StackParamList } from "../../routes/StackNavigator";
 
 interface CardDestaqueProps {
   movie: Movie;

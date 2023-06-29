@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Text, View, Image, FlatList, Dimensions } from "react-native";
+import { Text, Image, FlatList, Dimensions } from "react-native";
 import { styles } from "./styles";
-import { MovieSearchResult } from "../../services/api";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { NavigationProp } from "@react-navigation/native";
-import { StackParamList } from "../../routes/StackNavigator";
+import { StackParamList } from "../../routes";
+import { MovieSearchResult } from "../../services/imdbApi";
 
 interface Props {
   movies: MovieSearchResult[];

@@ -1,12 +1,12 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 
-import { CardPopulares } from "./CardPopulares/CardPopulares";
-import { window } from "../../constants/index";
-import { Movie } from "../../services/api";
 import { NavigationProp } from "@react-navigation/native";
-import { StackParamList } from "../../routes/StackNavigator";
+import { window } from "../../constants/index";
+import { StackParamList } from "../../routes/AuthStackNavigator";
+import { Movie } from "../../services/imdbApi";
+import { CardPopulares } from "./CardPopulares/CardPopulares";
 
 const PAGE_WIDTH = window.width;
 

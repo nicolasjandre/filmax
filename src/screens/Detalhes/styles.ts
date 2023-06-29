@@ -7,12 +7,16 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#15141F",
   },
-  container: {
+  filmeInformationContainer: {
     flex: 1,
     backgroundColor: "#15141F",
     padding: 16,
-    paddingTop: 30,
     paddingBottom: 0,
+  },
+  image: {
+    width: "100%",
+    height: 257,
+    resizeMode: "cover",
   },
   text: {
     color: "#ffffff",
@@ -22,21 +26,11 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "500",
     letterSpacing: 0.48,
+    marginTop: 16,
   },
-  image: {
-    width: "100%",
-    height: 257,
-    resizeMode: "cover",
-  },
-  similarImage: {
-    width: 100,
-    height: 150,
-    marginHorizontal: 5,
-  },
-  similarTitle: {
-    marginTop: 5,
-    fontSize: 12,
-    textAlign: "center",
-    color: "#FFFF",
+  icon: {
+    width: 20,
+    height: 20,
+    marginRight: 4,
   },
 });

@@ -1,23 +1,28 @@
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View } from "react-native";
-import { styles } from "./styles";
-import { StackParamList } from "../../routes/StackNavigator";
 import { Button } from "../../components/Button";
 import { EntrarCadastrarFraseFinal } from "../../components/EntrarCadastrarFraseFinal";
 import { Input } from "../../components/Input";
 import { Logo } from "../../components/Logo";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
 import { PageTitle } from "../../components/PageTitle";
+import { styles } from "./styles";
+import { login } from "../../services/authApi";
+import { StackParamList } from "../../routes";
+import ToastManager, { Toast } from "toastify-react-native";
+import { AuthContext } from "../../contexts/AuthContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-interface CadastrarProps {
-  navigation: NavigationProp<StackParamList, "Cadastrar">;
+interface EntrarProps {
+  navigation: NavigationProp<StackParamList, "Entrar">;
 }
 
-export const Entrar = ({ navigation }: CadastrarProps) => {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+export const Entrar = ({ navigation }: EntrarProps) => {
+  const [email, setEmail] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
+  const [entrando, setEntrando] = useState<boolean>(false);
+  const { setAuthenticatedUser } = useContext(AuthContext);
 
   const validarEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,43 +30,34 @@ export const Entrar = ({ navigation }: CadastrarProps) => {
   };
 
   const validarSenha = (senha: string) => {
-    return senha.length > 6;
+    return senha.length >= 6;
   };
 
-  const handleEntrar = () => {
-    navigation.navigate("BottomTab", { screen: "Home" });
+  const handleEntrar = async () => {
+    setEntrando(true);
     const emailValido = validarEmail(email);
     const senhaValida = validarSenha(senha);
 
     if (emailValido && senhaValida) {
-      const dadosCadastro = {
-        email: email,
-        senha: senha,
-      };
+      try {
+        const response = await login(email, senha);
 
-      // Chamar uma API para realizar o cadastro
-      fetch("https://exemplo.com/api/cadastro", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dadosCadastro),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Processar a resposta da API
-          console.log("Cadastro realizado com sucesso!");
-          console.log(data);
-        })
-        .catch((error) => {
-          // Lidar com erros durante o cadastro
-          console.error("Erro ao realizar o cadastro:", error);
-        });
+        const token = response?.data?.accessToken;
+
+        setAuthenticatedUser(response?.data?.user);
+
+        await AsyncStorage.setItem("filmax@token", token);
+
+        navigation.navigate("BottomTab", { screen: "Home" });
+      } catch (error: any) {
+        Toast.error("Email ou senha inválidos");
+      }
     } else if (!emailValido) {
-      console.log("Por favor digite um e-mail válido.");
+      Toast.error("Por favor digite um e-mail válido.");
     } else {
-      console.log("A senha precisa ter ao menos 6 caracteres.");
+      Toast.error("A senha precisa ter ao menos 6 caracteres.");
     }
+    setEntrando(false);
   };
 
   function handleNavigateCadastrar() {
@@ -70,6 +66,7 @@ export const Entrar = ({ navigation }: CadastrarProps) => {
 
   return (
     <View style={styles.container}>
+      <ToastManager width={350} height={80} />
       <Logo />
 
       <PageTitle title="Entrar" />
@@ -87,7 +84,7 @@ export const Entrar = ({ navigation }: CadastrarProps) => {
         secureTextEntry
       />
 
-      <Button title="Entrar" onPress={handleEntrar} />
+      <Button disabled={entrando} title="Entrar" onPress={handleEntrar} />
 
       <EntrarCadastrarFraseFinal
         onPress={handleNavigateCadastrar}
