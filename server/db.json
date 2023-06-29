@@ -1,3 +1,13 @@
 {
-  "users": []
+  "users": [
+    {
+      "email": "mcouto77@yahoo.com.br",
+      "password": "$2a$10$GiaolgS.PhaMYwUGlOdYlO/UmECi.mMgY15bc//FFXrUn89aQf95G",
+      "nome": "Michel",
+      "sobrenome": "Amparo",
+      "telefone": "21994874425",
+      "avatar": "https://randomuser.me/api/portraits/lego/5.jpg",
+      "id": 1
+    }
+  ]
 }

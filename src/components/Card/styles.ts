@@ -2,11 +2,13 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
-    marginHorizontal: 12,
+    flex: 1,
+    width: 154,
+    padding: 10,
+    marginHorizontal: 15,
   },
 
-  cardImg: {
+  image: {
     width: 154,
     height: 200,
     borderRadius: 20,
