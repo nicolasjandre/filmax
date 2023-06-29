@@ -19,8 +19,9 @@ interface CadastrarProps {
 }
 
 export const Cadastrar = ({ navigation }: CadastrarProps) => {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
+  const [cadastrando, setCadastrando] = useState<boolean>(false);
   const { setAuthenticatedUser } = useContext(AuthContext);
 
   const validarEmail = (email: string) => {
@@ -33,6 +34,7 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
   };
 
   const handleCadastrar = async () => {
+    setCadastrando(true);
     const emailValido = validarEmail(email);
     const senhaValida = validarSenha(senha);
 
@@ -54,6 +56,7 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
     } else {
       Toast.error("A senha precisa ter ao menos 6 caracteres.");
     }
+    setCadastrando(false);
   };
 
   function handleNavigateEntrar() {
@@ -62,7 +65,7 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
 
   return (
     <View style={styles.container}>
-      <ToastManager />
+      <ToastManager width={350} height={80} />
       <Logo />
 
       <PageTitle title="Crie Sua Conta" />
@@ -80,7 +83,7 @@ export const Cadastrar = ({ navigation }: CadastrarProps) => {
         secureTextEntry
       />
 
-      <Button title="Cadastrar" onPress={handleCadastrar} />
+      <Button disabled={cadastrando} title="Cadastrar" onPress={handleCadastrar} />
 
       <EntrarCadastrarFraseFinal
         onPress={handleNavigateEntrar}

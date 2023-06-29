@@ -1,6 +1,6 @@
 import { createContext, Dispatch, ReactNode, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getUser, UserGetById, UserLoginCadastro } from "../services/authApi";
+import { getUser, User } from "../services/authApi";
 import { parseJwt } from "../utils";
 
 type AuthProviderProps = {
@@ -8,14 +8,14 @@ type AuthProviderProps = {
 };
 
 type AuthContextData = {
-  authenticatedUser: UserGetById | UserLoginCadastro;
-  setAuthenticatedUser: Dispatch<React.SetStateAction<UserGetById | UserLoginCadastro>>;
+  authenticatedUser: User;
+  setAuthenticatedUser: Dispatch<React.SetStateAction<User>>;
 };
 
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [authenticatedUser, setAuthenticatedUser] = useState<UserGetById | UserLoginCadastro>({} as UserLoginCadastro);
+  const [authenticatedUser, setAuthenticatedUser] = useState<User>({} as User);
 
   useEffect(() => {
     const getToken = async () => {
@@ -29,11 +29,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
           setAuthenticatedUser(response?.data);
         };
 
-        fetchUser();
+        fetchUser().catch((e) => console.log(e));
       }
     };
 
-    getToken();
+    getToken().catch((e) => console.log(e));
   }, []);
 
   return <AuthContext.Provider value={{ authenticatedUser, setAuthenticatedUser }}>{children}</AuthContext.Provider>;

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-interface MovieData {
+export type MovieData = {
   id: string;
   title: string;
   originalTitle: string;

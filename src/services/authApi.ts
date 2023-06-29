@@ -1,31 +1,29 @@
 import axios, { AxiosResponse } from "axios";
 
-export type UserLoginCadastro = {
-  email: string;
-  id: number;
-};
-
-export type UserGetById = {
+export type User = {
   nome: string;
   email: string;
   password: string;
-  id: number;
-};
-
-export type UserLoginAtualizar = {
-  id: number;
-  nome: string;
-  sobrenome: string; 
+  id: string;
+  sobrenome: string;
   telefone: string;
-}
+  avatar: string;
+};
 
 type LoginCadastroResponse = {
   accessToken: string;
-  user: UserLoginCadastro;
+  user: User;
+};
+
+type InformacoesPerfil = {
+  nome: string;
+  sobrenome: string;
+  telefone: string;
+  avatar: string;
 };
 
 const api = axios.create({
-  baseURL: "https://ready-roses-sin.loca.lt",
+  baseURL: " https://ready-bananas-pull.loca.lt",
 });
 
 export function login(email: string, senha: string): Promise<AxiosResponse<LoginCadastroResponse, any>> {
@@ -39,17 +37,22 @@ export function cadastrar(email: string, senha: string): Promise<AxiosResponse<L
   return api.post("users", {
     email,
     password: senha,
+    nome: "",
+    sobrenome: "",
+    telefone: "",
+    avatar: "https://randomuser.me/api/portraits/lego/1.jpg"
   });
 }
 
-export function getUser(userId: string): Promise<AxiosResponse<UserGetById, any>> {
+export function getUser(userId: string): Promise<AxiosResponse<User, any>> {
   return api.get(`users/${userId}`);
 }
 
-export function atualizarUsuario(userId: string, nome: string, sobrenome: string, telefone: string): Promise<AxiosResponse<LoginCadastroResponse, any>> {
+export function atualizarUsuario(
+  userId: string,
+  InformacoesPerfil: InformacoesPerfil,
+): Promise<AxiosResponse<User, any>> {
   return api.patch(`users/${userId}`, {
-    nome,
-    sobrenome,
-    telefone,
+    ...InformacoesPerfil
   });
 }
