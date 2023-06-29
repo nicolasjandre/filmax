@@ -23,7 +23,7 @@ type InformacoesPerfil = {
 };
 
 const api = axios.create({
-  baseURL: " https://ready-bananas-pull.loca.lt",
+  baseURL: "https://6ea9-168-205-103-5.ngrok-free.app",
 });
 
 export function login(email: string, senha: string): Promise<AxiosResponse<LoginCadastroResponse, any>> {
@@ -40,7 +40,7 @@ export function cadastrar(email: string, senha: string): Promise<AxiosResponse<L
     nome: "",
     sobrenome: "",
     telefone: "",
-    avatar: "https://randomuser.me/api/portraits/lego/1.jpg"
+    avatar: "https://randomuser.me/api/portraits/lego/1.jpg",
   });
 }
 
@@ -50,9 +50,9 @@ export function getUser(userId: string): Promise<AxiosResponse<User, any>> {
 
 export function atualizarUsuario(
   userId: string,
-  InformacoesPerfil: InformacoesPerfil,
+  InformacoesPerfil: InformacoesPerfil
 ): Promise<AxiosResponse<User, any>> {
   return api.patch(`users/${userId}`, {
-    ...InformacoesPerfil
+    ...InformacoesPerfil,
   });
 }

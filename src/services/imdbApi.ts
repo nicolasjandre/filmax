@@ -82,7 +82,7 @@ export type MovieData = {
     imDbRating: string;
   }[];
   errorMessage: string | null;
-}
+};
 
 export type Movie = {
   id: string;
@@ -100,7 +100,7 @@ interface PopularMovies {
   items: Movie[];
 }
 
-const API_KEY = "k_h89gtckp";
+const API_KEY = "k_vw4r7z6k";
 
 const api = axios.create({
   baseURL: "https://imdb-api.com/",
@@ -110,8 +110,6 @@ export function getTop250Movies(): Promise<AxiosResponse<PopularMovies, any>> {
   return api.get(`/API/MostPopularMovies/${API_KEY}`);
 }
 
-export function getMovieById(
-  id: string
-): Promise<AxiosResponse<MovieData, any>> {
+export function getMovieById(id: string): Promise<AxiosResponse<MovieData, any>> {
   return api.get(`API/Title/${API_KEY}/${id}`);
 }

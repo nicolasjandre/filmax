@@ -1,14 +1,16 @@
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Image, Text, View, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Image, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { StackAuthParamList } from "../../routes/AuthStackNavigator";
 import { MovieData, getMovieById } from "../../services/imdbApi";
 import { styles } from "./styles";
 
-import backButtom from "../../assets/images/icons-details-page/backpageicon.png";
-import playButtonImage from "../../assets/images/icons-details-page/playicon.png";
+import { DetalhesFilme } from "../../components/DetalhesFilme";
+import { FilmesSimilares } from "../../components/FilmesSimilares";
+import { SinopseFilme } from "../../components/SinopseFilme";
+import { BackButton } from "../../components/BackButton";
 
 type DetalhesScreenRouteProp = RouteProp<StackAuthParamList, "Detalhes">;
 type DetalhesScreenNavigationProp = StackNavigationProp<StackAuthParamList, "Detalhes">;
@@ -50,74 +52,27 @@ export default function Detalhes({ route, navigation }: DetalhesProps) {
     );
   }
 
+  function handleNavigateBack() {
+    navigation.goBack();
+  }
+
   return (
     <ScrollView>
       {data && data.errorMessage === "" ? (
-        <View>
-          <View style={styles.imageContainer}>
-            <Image source={{ uri: data.image }} style={styles.image} />
-            <TouchableOpacity
-              style={styles.backButton}
-              onPress={() => {
-                console.log("Botão de voltar pressionado");
-                navigation.goBack();
-              }}
-            >
-              <Image source={backButtom} style={styles.backButtonImage} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.playButton}>
-              <Image source={playButtonImage} style={styles.playButtonImage} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.container}>
+        <>
+          <BackButton handleNavigateBack={handleNavigateBack} />
+          <Image source={{ uri: data.image }} style={styles.image} />
+
+          <View style={styles.filmeInformationContainer}>
             <Text style={styles.title}>{data.title}</Text>
-            <View style={styles.titleContainer}>
-              <Text style={styles.detailsText}>{data.runtimeMins} Minutes</Text>
-              <Text style={styles.detailsText}>Rating: {data.imDbRating}</Text>
-            </View>
-            <View style={styles.detailsContainer}>
-              <View style={styles.detailsRow}>
-                <Text style={styles.subTitle}>Lançamento</Text>
-                <Text style={styles.detailsText}>{data.releaseDate}</Text>
-              </View>
-              <View style={styles.detailsRow}>
-                <Text style={styles.subTitle}>Gêneros</Text>
-                <View style={styles.genreContainer}>
-                  {data.genreList.map((genre) => (
-                    <Text key={genre.key} style={styles.genreBadge}>
-                      {genre.value}
-                    </Text>
-                  ))}
-                </View>
-              </View>
-            </View>
-            <Text style={styles.plotTitle}>Sinopse</Text>
-            <Text style={styles.plotText}>
-              {showFullPlot ? data.plot : `${data.plot.substring(0, 150)}...`}
-              <Text style={styles.readMore} onPress={toggleShowFullPlot}>
-                {showFullPlot ? "Ler menos" : "Ler mais"}
-              </Text>
-            </Text>
-            <Text style={styles.similarTitleSection}>Similares</Text>
-            <FlatList
-              data={data.similars}
-              keyExtractor={(item) => item.id}
-              horizontal
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.setParams({ id: item.id });
-                  }}
-                >
-                  <View>
-                    <Image source={{ uri: item.image }} style={styles.similarImage} />
-                    <Text style={styles.similarTitle}>{item.title}</Text>
-                  </View>
-                </TouchableOpacity>
-              )}
-            />
+
+            <DetalhesFilme data={data} />
+
+            <SinopseFilme showFullPlot={showFullPlot} data={data} toggleShowFullPlot={toggleShowFullPlot} />
+
+            <FilmesSimilares navigation={navigation} data={data} />
           </View>
-        </View>
+        </>
       ) : (
         <Text style={styles.text}>{data?.errorMessage}</Text>
       )}

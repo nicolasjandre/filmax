@@ -75,7 +75,9 @@ export const Perfil = () => {
           <PersonalizedIcon focused heightAndWidth={36} children={<Entypo name="pencil" size={24} color="#ffffff" />} />
         </TouchableOpacity>
         <ImageBackground
-          source={{ uri: informacoesPerfil?.avatar.length > 0 ? informacoesPerfil?.avatar : authenticatedUser?.avatar }}
+          source={{
+            uri: informacoesPerfil?.avatar?.length > 0 ? informacoesPerfil?.avatar : authenticatedUser?.avatar,
+          }}
           resizeMode="cover"
           style={styles.imagePerfil}
         />
