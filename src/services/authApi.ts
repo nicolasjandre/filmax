@@ -12,13 +12,20 @@ export type UserGetById = {
   id: number;
 };
 
+export type UserLoginAtualizar = {
+  id: number;
+  nome: string;
+  sobrenome: string; 
+  telefone: string;
+}
+
 type LoginCadastroResponse = {
   accessToken: string;
   user: UserLoginCadastro;
 };
 
 const api = axios.create({
-  baseURL: "https://shiny-buckets-tickle.loca.lt",
+  baseURL: "https://ready-roses-sin.loca.lt",
 });
 
 export function login(email: string, senha: string): Promise<AxiosResponse<LoginCadastroResponse, any>> {
@@ -37,4 +44,12 @@ export function cadastrar(email: string, senha: string): Promise<AxiosResponse<L
 
 export function getUser(userId: string): Promise<AxiosResponse<UserGetById, any>> {
   return api.get(`users/${userId}`);
+}
+
+export function atualizarUsuario(userId: string, nome: string, sobrenome: string, telefone: string): Promise<AxiosResponse<LoginCadastroResponse, any>> {
+  return api.patch(`users/${userId}`, {
+    nome,
+    sobrenome,
+    telefone,
+  });
 }

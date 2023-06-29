@@ -1,21 +1,28 @@
-import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, ImageBackground } from "react-native";
 import { styles } from "./styles";
 import { NavigationProp } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { StackNoAuthParamList } from "../../routes/NoAuthStackNavigator";
 
 interface ComecarProps {
   navigation: NavigationProp<StackNoAuthParamList, "Comecar">;
 }
 
+const Imagem = require('../../assets/images/começar/img.jpeg');
+
 export const Comecar = ({ navigation }: ComecarProps) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Comecar Screen</Text>
+      <ImageBackground source={Imagem} resizeMode="cover" style={styles.image}>
+        <Text style={styles.containerText}/>
+        <Text style={styles.text1}>Conheça o Filmax</Text>
+        <Text style={styles.text2}>O aplicativo de streaming favorito</Text>
+        <Text style={styles.text3}>do século!</Text>
 
-      <Text onPress={() => navigation.navigate("Cadastrar")} style={styles.text}>
-        Ir para screen cadastrar
-      </Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Cadastrar")}> 
+        <Text style={styles.textButton}>Começar</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </View>
   );
 };
