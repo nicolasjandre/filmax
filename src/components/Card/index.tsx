@@ -40,6 +40,7 @@ export const Cards: React.FC<Props> = ({ movies, navigation }) => {
       numColumns={numColumns}
       renderItem={renderItem}
       key={numColumns.toString()}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

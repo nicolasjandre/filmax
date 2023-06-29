@@ -26,7 +26,7 @@ export const Descobrir = ({ navigation }: DescobrirProps) => {
     const fetchSearchMovies = async () => {
       const response = await getMovieBySearch(titleSearch, genresApiParams);
 
-      setSearchedMovies(response?.data?.results);
+      setSearchedMovies(response?.data?.results.slice(0,30));
     };
 
     fetchSearchMovies();
