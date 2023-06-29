@@ -20,4 +20,22 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
     marginVertical: 40,
   },
+  logoutTouchableOpacity: {
+    position: "absolute",
+    right: 20,
+    top: 20,
+    zIndex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  logoutText: {
+    fontSize: 18,
+    color: "#ffffff",
+  },
+  editarPerfilTouchable: {
+    position: "absolute",
+    right: 5,
+    bottom: 40,
+    zIndex: 1,
+  },
 });
