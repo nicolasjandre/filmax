@@ -5,7 +5,6 @@ import { AuthContext } from "../contexts/AuthContext";
 import { NoAuthStackNavigator } from "./NoAuthStackNavigator";
 
 export type StackParamList = {
-  Perfil: undefined;
   Comecar: undefined;
   Cadastrar: undefined;
   Entrar: undefined;

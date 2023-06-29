@@ -6,9 +6,13 @@ import { Button } from "../../components/Button";
 import { Entypo } from "@expo/vector-icons";
 import { PersonalizedIcon } from "../../components/PlayButtonIcon";
 import { AvatarModal } from "../../components/AvatarModal";
-import { atualizarUsuario } from "../../services/authApi";
+import { User, atualizarUsuario } from "../../services/authApi";
 import { AuthContext } from "../../contexts/AuthContext";
+import { AntDesign } from "@expo/vector-icons";
 import ToastManager, { Toast } from "toastify-react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavigationProp } from "@react-navigation/native";
+import { StackParamList } from "../../routes";
 
 type InformacoesPerfil = {
   nome: string;
@@ -17,7 +21,11 @@ type InformacoesPerfil = {
   avatar: string;
 };
 
-export const Perfil = () => {
+interface PerfilProps {
+  navigation: NavigationProp<StackParamList, "BottomTab">;
+}
+
+export const Perfil = ({ navigation }: PerfilProps) => {
   const [informacoesPerfil, setInformacoesPerfil] = React.useState<InformacoesPerfil>({} as InformacoesPerfil);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
   const { authenticatedUser, setAuthenticatedUser } = React.useContext(AuthContext);
@@ -64,14 +72,23 @@ export const Perfil = () => {
     setIsModalOpen(true);
   }
 
+  async function handleLogout() {
+    setAuthenticatedUser({} as User);
+    await AsyncStorage.removeItem("filmax@token");
+  }
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={handleLogout} style={styles.logoutTouchableOpacity}>
+        <Text style={styles.logoutText}>Sair</Text>
+        <PersonalizedIcon heightAndWidth={36} children={<AntDesign name="logout" size={20} color="#ffffff" />} />
+      </TouchableOpacity>
       <ToastManager width={350} />
       {isModalOpen ? <AvatarModal setInformacoesPerfil={setInformacoesPerfil} setIsModalOpen={setIsModalOpen} /> : null}
       <Text style={styles.text}>Meu Perfil</Text>
 
       <View>
-        <TouchableOpacity onPress={handleOpenModal} style={{ position: "absolute", right: 5, bottom: 40, zIndex: 1 }}>
+        <TouchableOpacity onPress={handleOpenModal} style={styles.editarPerfilTouchable}>
           <PersonalizedIcon focused heightAndWidth={36} children={<Entypo name="pencil" size={24} color="#ffffff" />} />
         </TouchableOpacity>
         <ImageBackground

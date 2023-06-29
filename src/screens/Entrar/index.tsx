@@ -48,10 +48,8 @@ export const Entrar = ({ navigation }: EntrarProps) => {
 
         await AsyncStorage.setItem("filmax@token", token);
 
-        console.log("entrando 4");
-
         navigation.navigate("BottomTab", { screen: "Home" });
-      } catch (error) {
+      } catch (error: any) {
         Toast.error("Email ou senha inválidos");
       }
     } else if (!emailValido) {
