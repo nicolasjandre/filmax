@@ -5,9 +5,9 @@
 <p align="center">
 <img src="./.github/preview1.jpg" alt="Tela 'Começar' do aplicativo" width="300" height="600">
 <img src="./.github/preview2.jpg" alt="Tela de criar conta" width="300" height="600">
+<img src="./.github/preview3.jpg" alt="Tela meu perfil do aplicativo" width="300" height="600">
 <img src="./.github/preview4.jpg" alt="Tela de login" width="300" height="600">
 <img src="./.github/preview5.jpg" alt="Tela home do aplicativo" width="300" height="600">
-<img src="./.github/preview3.jpg" alt="Tela meu perfil do aplicativo" width="300" height="600">
 </p>
 <hr>
 <p align="center">Tecnologies:

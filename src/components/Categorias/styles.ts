@@ -11,10 +11,10 @@ export const styles = StyleSheet.create({
   },
   catItem: {
     paddingHorizontal: 10,
-    borderRadius: 5,
   },
   text: {
     color: "#ffffff",
+    marginBottom: 20,
   },
   selecionarCat: {
     color: '#EF2D1A',
