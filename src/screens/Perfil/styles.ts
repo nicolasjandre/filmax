@@ -14,14 +14,13 @@ export const styles = StyleSheet.create({
   input:{
     color: '#FFFFFF',
     
-  
   },
 
   text: {
     color: '#FFFFFF',
     fontSize: 24,
     top: -30,
- 
+
   },
 
   imagePerfil: {

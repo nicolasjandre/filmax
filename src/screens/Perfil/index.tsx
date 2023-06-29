@@ -4,7 +4,7 @@ import React from "react";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
-const Imagem = require('../../assets/images/perfil/icon2.png')
+const icon = require('../../assets/images/perfil/icon2.png')
 
 export const Perfil = () => {
 
@@ -23,7 +23,7 @@ export const Perfil = () => {
     return (
         <View style={styles.container}> 
             <Text style={styles.text}>Meu Perfil</Text>
-            <ImageBackground source={Imagem} resizeMode="cover" style={styles.imagePerfil}/>
+            <ImageBackground source={icon} resizeMode="cover" style={styles.imagePerfil}/>
             <Input
                 placeholder="Nome"
                 onChangeText={(text) => setNome(text)}
@@ -38,8 +38,8 @@ export const Perfil = () => {
                 placeholder="Telefone"
                 onChangeText={(text) => setTelefone(text)}
             />
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.textButton}>Salvar Perfil</Text>
+            <TouchableOpacity style={styles.button} onPress={atualizarPerfil}>
+                <Text style={styles.textButton} >Salvar Perfil</Text>
             </TouchableOpacity>
         
         </View>

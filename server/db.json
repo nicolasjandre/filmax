@@ -4,6 +4,11 @@
       "email": "nicolasjandre@live.com",
       "password": "$2a$10$6PFSg7mzf3NfqRxkrSs9zeuatD6e.NMrS18rWt9SsotRWSQLbRC2S",
       "id": 1
+    },
+    {
+      "email": "jhoanaalexandredesouza@gmail.com",
+      "password": "$2a$10$ZysJIic4AJxSwjvV1eCCouHY/fMExiUOTXRDIgLum722L3Zbtm58a",
+      "id": 2
     }
   ]
 }
