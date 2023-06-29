@@ -1,10 +1,10 @@
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { ActivityIndicator, FlatList, Image, Text, View, TouchableOpacity } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { StackAuthParamList } from "../../routes/AuthStackNavigator";
-import { getMovieById } from "../../services/imdbApi";
+import { MovieData, getMovieById } from "../../services/imdbApi";
 import { styles } from "./styles";
 
 import backButtom from "../../assets/images/icons-details-page/backpageicon.png";
@@ -16,90 +16,6 @@ type DetalhesScreenNavigationProp = StackNavigationProp<StackAuthParamList, "Det
 interface DetalhesProps {
   route: DetalhesScreenRouteProp;
   navigation: DetalhesScreenNavigationProp;
-}
-
-interface MovieData {
-  id: string;
-  title: string;
-  originalTitle: string;
-  fullTitle: string;
-  type: string;
-  year: string;
-  image: string;
-  releaseDate: string;
-  runtimeMins: string;
-  runtimeStr: string;
-  plot: string;
-  plotLocal: string;
-  plotLocalIsRtl: boolean;
-  awards: string;
-  directors: string;
-  directorList: {
-    id: string;
-    name: string;
-  }[];
-  writers: string;
-  writerList: {
-    id: string;
-    name: string;
-  }[];
-  stars: string;
-  starList: {
-    id: string;
-    name: string;
-  }[];
-  actorList: {
-    id: string;
-    image: string;
-    name: string;
-    asCharacter: string;
-  }[];
-  fullCast: any;
-  genres: string;
-  genreList: {
-    key: string;
-    value: string;
-  }[];
-  companies: string;
-  companyList: {
-    id: string;
-    name: string;
-  }[];
-  countries: string;
-  countryList: {
-    key: string;
-    value: string;
-  }[];
-  languages: string;
-  languageList: {
-    key: string;
-    value: string;
-  }[];
-  contentRating: string;
-  imDbRating: string;
-  imDbRatingVotes: string;
-  metacriticRating: string;
-  ratings: any;
-  wikipedia: any;
-  posters: any;
-  images: any;
-  trailer: any;
-  boxOffice: {
-    budget: string;
-    openingWeekendUSA: string;
-    grossUSA: string;
-    cumulativeWorldwideGross: string;
-  };
-  tagline: any;
-  keywords: string;
-  keywordList: string[];
-  similars: {
-    id: string;
-    title: string;
-    image: string;
-    imDbRating: string;
-  }[];
-  errorMessage: string | null;
 }
 
 export default function Detalhes({ route, navigation }: DetalhesProps) {

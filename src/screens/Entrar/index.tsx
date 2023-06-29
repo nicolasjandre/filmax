@@ -19,8 +19,9 @@ interface EntrarProps {
 }
 
 export const Entrar = ({ navigation }: EntrarProps) => {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
+  const [entrando, setEntrando] = useState<boolean>(false);
   const { setAuthenticatedUser } = useContext(AuthContext);
 
   const validarEmail = (email: string) => {
@@ -33,6 +34,7 @@ export const Entrar = ({ navigation }: EntrarProps) => {
   };
 
   const handleEntrar = async () => {
+    setEntrando(true);
     const emailValido = validarEmail(email);
     const senhaValida = validarSenha(senha);
 
@@ -57,6 +59,7 @@ export const Entrar = ({ navigation }: EntrarProps) => {
     } else {
       Toast.error("A senha precisa ter ao menos 6 caracteres.");
     }
+    setEntrando(false);
   };
 
   function handleNavigateCadastrar() {
@@ -65,7 +68,7 @@ export const Entrar = ({ navigation }: EntrarProps) => {
 
   return (
     <View style={styles.container}>
-      <ToastManager />
+      <ToastManager width={350} height={80} />
       <Logo />
 
       <PageTitle title="Entrar" />
@@ -83,7 +86,7 @@ export const Entrar = ({ navigation }: EntrarProps) => {
         secureTextEntry
       />
 
-      <Button title="Entrar" onPress={handleEntrar} />
+      <Button disabled={entrando} title="Entrar" onPress={handleEntrar} />
 
       <EntrarCadastrarFraseFinal
         onPress={handleNavigateCadastrar}

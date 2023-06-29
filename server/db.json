@@ -2,13 +2,12 @@
   "users": [
     {
       "email": "nicolasjandre@live.com",
-      "password": "$2a$10$6PFSg7mzf3NfqRxkrSs9zeuatD6e.NMrS18rWt9SsotRWSQLbRC2S",
+      "password": "$2a$10$aOjst7iQQqEuyb7E5u0TA.nzFOQhRM7Z7wLpKPuD8IAo7VNOaqMe6",
+      "nome": "Nicolas",
+      "sobrenome": "Jandre",
+      "telefone": "21973262421",
+      "avatar": "https://randomuser.me/api/portraits/lego/8.jpg",
       "id": 1
-    },
-    {
-      "email": "jhoanaalexandredesouza@gmail.com",
-      "password": "$2a$10$ZysJIic4AJxSwjvV1eCCouHY/fMExiUOTXRDIgLum722L3Zbtm58a",
-      "id": 2
     }
   ]
 }
