@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { StackParamList } from "../../routes/StackNavigator";
 import { styles } from "./styles";
-import { Movie, getTop250Movies } from "../../services/api";
+import { PopularMoviesResult, getTop250Movies } from "../../services/api";
 import { CardDestaque } from "../../components/CardDestaque";
 import { PopularesCarroussel } from "../../components/PopularesCarroussel";
 import { Header } from "../../components/Header";
@@ -13,7 +13,7 @@ interface HomeProps {
 }
 
 export const Home = ({ navigation }: HomeProps) => {
-    const [popularMovies, setPopularMovies] = useState<Movie[] | []>([]);
+    const [popularMovies, setPopularMovies] = useState<PopularMoviesResult[] | []>([]);
 
     useEffect(() => {
         const fetchPopularMovies = async () => {

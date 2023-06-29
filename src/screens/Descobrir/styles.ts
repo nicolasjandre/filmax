@@ -5,22 +5,18 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#15141F",
     paddingHorizontal: 16,
-    paddingBottom: 0,
-  },
+    },
   text: {
     color: "#ffffff",
   },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    marginHorizontal: 8,
+  searchContainer: {
     backgroundColor: "#211F30",
-    width: 360,
-    height: 48,
+    flexDirection: "row",
+    borderRadius: 20,
+    height: 54,
   },
-  input: {
-    marginLeft: 25,
-  },
+  icon: {
+    marginTop: 10,
+  }
+
 });
